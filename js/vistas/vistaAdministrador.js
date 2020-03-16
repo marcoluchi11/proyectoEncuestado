@@ -22,8 +22,17 @@ VistaAdministrador.prototype = {
   },
 
   construirElementoPregunta: function(pregunta){
+    //[{'textoPregunta': 'Mi primer Pregunta', 'id': 0, 'cantidadPorRespuesta': [{'textoRespuesta': 'mi unica respuesta', 'cantidad': 2}]}]
     var contexto = this;
     var nuevoItem;
+    var question = pregunta[0].textoPregunta;
+    var nuevoItem = document.createElement('li');
+   // $(nuevoItem).text(pregunta.textoPregunta);
+    $(nuevoItem).attr('id', pregunta[0].id);
+    console.log(question);
+    $(nuevoItem).attr('class', 'list-group-item');
+    nuevoItem.textContent = question;
+    console.log(nuevoItem);
     //completar
     //asignar a nuevoitem un elemento li con clase "list-group-item", id "pregunta.id" y texto "pregunta.textoPregunta"
     var interiorItem = $('.d-flex');
