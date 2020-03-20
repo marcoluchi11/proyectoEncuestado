@@ -17,6 +17,8 @@ var VistaAdministrador = function(modelo, controlador, elementos) {
 VistaAdministrador.prototype = {
   //lista
   inicializar: function() {
+    this.reconstruirLista();
+    this.configuracionDeBotones();
     //llamar a los metodos para reconstruir la lista, configurar botones y validar formularios
     validacionDeFormulario();
   },
@@ -25,7 +27,9 @@ VistaAdministrador.prototype = {
     //[{'textoPregunta': 'Mi primer Pregunta', 'id': 0, 'cantidadPorRespuesta': [{'textoRespuesta': 'mi unica respuesta', 'cantidad': 2}]}]
     var contexto = this;
     var nuevoItem;
-    nuevoItem = $('<li class="list-group-item" id=${pregunta.id}></li>');
+    nuevoItem = $('<li class="list-group-item"></li>');
+    nuevoItem.attr('id',pregunta.id);
+    nuevoItem.attr('texto',pregunta.textoPregunta);
     //completar
     //asignar a nuevoitem un elemento li con clase "list-group-item", id "pregunta.id" y texto "pregunta.textoPregunta"
     var interiorItem = $('.d-flex');
@@ -36,6 +40,7 @@ VistaAdministrador.prototype = {
     }));
     nuevoItem.html($('.d-flex').html());
     return nuevoItem;
+
   },
 
   reconstruirLista: function() {
@@ -58,9 +63,13 @@ VistaAdministrador.prototype = {
 
       $('[name="option[]"]').each(function() {
         //completar
+        var respuesta = $(this).val();
+        respuestas.push(respuesta);
+        console.log(respuestas);
       })
       contexto.limpiarFormulario();
       contexto.controlador.agregarPregunta(value, respuestas);
+      // QUEDA RESOLVER PORQUE ME DA UNDEFINED
     });
     //asociar el resto de los botones a eventos
   },
