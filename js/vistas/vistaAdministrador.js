@@ -14,6 +14,9 @@ var VistaAdministrador = function(modelo, controlador, elementos) {
   this.modelo.preguntaEliminada.suscribir(function() {
      contexto.reconstruirLista(); 
     });
+  this.modelo.todoBorrado.suscribir(function(){
+    contexto.reconstruirLista();
+  });
 };
 
 
@@ -72,7 +75,6 @@ VistaAdministrador.prototype = {
       })
       contexto.limpiarFormulario();
       contexto.controlador.agregarPregunta(value, respuestas);
-      // QUEDA RESOLVER PORQUE ME DA UNDEFINED
     });
     //asociar el resto de los botones a eventos
     e.botonBorrarPregunta.click(function(){
@@ -80,6 +82,9 @@ VistaAdministrador.prototype = {
       var id = parseInt($('.list-group-item.active').attr('id'));
       console.log(id);
         contexto.controlador.borrarPregunta(id);
+    });
+    e.borrarTodo.click(function(){
+        contexto.controlador.borrarTodo();
     });
   },
 
