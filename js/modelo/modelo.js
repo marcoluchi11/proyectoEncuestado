@@ -9,6 +9,7 @@ var Modelo = function() {
   this.preguntaAgregada = new Evento(this);
   this.preguntaEliminada = new Evento(this);
   this.todoBorrado = new Evento(this);
+  this.preguntaEditada = new Evento(this);
 };
 
 Modelo.prototype = {
@@ -42,7 +43,11 @@ Modelo.prototype = {
   sumarVoto: function(){
 
   },
-  editarPregunta: function(){
+  editarPregunta: function(id){
+    
+    var index = this.preguntas.findIndex(i => i.id === id);
+    this.preguntas[index].textoPregunta = prompt('Edite la respuesta');
+    this.preguntaEditada.notificar();
 
   },
   borrarTodo: function(){
