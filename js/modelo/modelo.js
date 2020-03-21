@@ -10,6 +10,7 @@ var Modelo = function() {
   this.preguntaEliminada = new Evento(this);
   this.todoBorrado = new Evento(this);
   this.preguntaEditada = new Evento(this);
+  this.respuestaAgregada = new Evento(this);
 };
 
 Modelo.prototype = {
@@ -37,21 +38,24 @@ Modelo.prototype = {
     this.preguntas.splice(index,1);
     this.preguntaEliminada.notificar();
   },
-  eliminarPregunta: function (){
+  sumarVoto: function(idPregunta,textRespuesta){
+
+    
 
   },
-  sumarVoto: function(){
+  agregarRespuesta: function(idPregunta, textRespuesta){
+
+      var question = this.preguntas.findIndex(i => i.id === idPregunta);
+      this.preguntas[question].cantidadPorRespuesta.push({'textoRespuesta': textRespuesta, 'cantidadRespuestas': 0});
+      this.respuestaAgregada.notificar();
 
   },
   editarPregunta: function(id){
-    
     var index = this.preguntas.findIndex(i => i.id === id);
     this.preguntas[index].textoPregunta = prompt('Edite la respuesta');
     this.preguntaEditada.notificar();
-
   },
   borrarTodo: function(){
-
           this.preguntas = [];
           this.todoBorrado.notificar();
   },
