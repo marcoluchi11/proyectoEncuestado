@@ -11,6 +11,9 @@ var VistaAdministrador = function(modelo, controlador, elementos) {
   this.modelo.preguntaAgregada.suscribir(function() {
     contexto.reconstruirLista();
   });
+  this.modelo.preguntaEliminada.suscribir(function() {
+     contexto.reconstruirLista(); 
+    });
 };
 
 
@@ -63,15 +66,21 @@ VistaAdministrador.prototype = {
 
       $('[name="option[]"]').each(function() {
         //completar
-        var respuesta = $(this).val();
-        respuestas.push(respuesta);
-        console.log(respuestas);
+        if($(this).val() != ""){
+        respuestas.push({ textoRespuesta: $(this).val(), cantidadRespuestas: 0 });
+          }
       })
       contexto.limpiarFormulario();
       contexto.controlador.agregarPregunta(value, respuestas);
       // QUEDA RESOLVER PORQUE ME DA UNDEFINED
     });
     //asociar el resto de los botones a eventos
+    e.botonBorrarPregunta.click(function(){
+
+      var id = parseInt($('.list-group-item.active').attr('id'));
+      console.log(id);
+        contexto.controlador.borrarPregunta(id);
+    });
   },
 
   limpiarFormulario: function(){
