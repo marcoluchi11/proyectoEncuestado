@@ -37,9 +37,10 @@ VistaUsuario.prototype = {
     var preguntas = this.modelo.preguntas;
     preguntas.forEach(function(clave){
       var listaParaGrafico = [[clave.textoPregunta, 'Cantidad']];
+      console.log(listaParaGrafico);
       var respuestas = clave.cantidadPorRespuesta;
       respuestas.forEach (function(elemento) {
-        listaParaGrafico.push([elemento.textoRespuesta,elemento.cantidad]);
+        listaParaGrafico.push([elemento.textoRespuesta,elemento.cantidadRespuestas]);
       });
       contexto.dibujarGrafico(clave.textoPregunta, listaParaGrafico);
     })
