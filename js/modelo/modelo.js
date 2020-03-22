@@ -16,7 +16,7 @@ var Modelo = function() {
   this.todoBorrado = new Evento(this);
   this.preguntaEditada = new Evento(this);
   this.respuestaAgregada = new Evento(this);
-  this.votoAgregado = new Evento(this);
+  this.votoSumado = new Evento(this);
 };
 
 Modelo.prototype = {
@@ -45,11 +45,10 @@ Modelo.prototype = {
     this.guardar();
     this.preguntaEliminada.notificar();
   },
-  agregarVotos: function(idPregunta,textRespuesta){
+  agregarVotos: function(nombrePregunta,RespuestaSeleccionada){
 
-    var question = this.preguntas.findIndex(i => i.id === idPregunta);
-
-   var rta = modelo.preguntas[question].cantidadPorRespuesta.find(i => i.textoRespuesta === textRespuesta);
+    var pregunta = this.preguntas.findIndex(data => data.textoPregunta === nombrePregunta);
+    var rta = this.preguntas[pregunta].cantidadPorRespuesta.find(data => data.textoRespuesta === RespuestaSeleccionada);
     rta.cantidadRespuestas++;
     this.guardar();
     this.votoSumado.notificar();
