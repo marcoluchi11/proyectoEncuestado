@@ -20,9 +20,9 @@ Controlador.prototype = {
   editarPregunta: function(id){
       this.modelo.editarPregunta(id);
   },
-  agregarVotos: function(id,texto){
+  agregarVotos: function(nombrePregunta,RespuestaSeleccionada){
 
-    this.modelo.agregarVotos(id,texto);
+    this.modelo.agregarVotos(nombrePregunta,RespuestaSeleccionada);
   },
  
 };

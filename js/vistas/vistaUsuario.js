@@ -61,7 +61,6 @@ VistaUsuario.prototype = {
       //agregar a listaPreguntas un elemento div con valor "clave.textoPregunta", texto "clave.textoPregunta", id "clave.id"
       var respuestas = clave.cantidadPorRespuesta;
       contexto.mostrarRespuestas(listaPreguntas,respuestas, clave);
-      console.log(listaPreguntas);
     })
   },
 
@@ -87,7 +86,6 @@ VistaUsuario.prototype = {
         var id = $(this).attr('id');
         var respuestaSeleccionada = $('input[name=' + id + ']:checked').val();
         $('input[name=' + id + ']').prop('checked',false);
-        console.log(nombrePregunta + '' + respuestaSeleccionada);
         contexto.controlador.agregarVotos(nombrePregunta,respuestaSeleccionada);
       });
   },
