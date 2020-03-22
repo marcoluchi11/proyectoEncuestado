@@ -11,8 +11,8 @@ var VistaUsuario = function(modelo, controlador, elementos) {
   this.modelo.preguntaAgregada.suscribir(function() {
     contexto.reconstruirLista();
   });
-  this.modelo.preguntaEliminada.suscribir(function(){
-      contexto.reconstruirLista();
+  this.modelo.votoSumado.suscribir(function () {
+    contexto.reconstruirGrafico();
   });
 };
 
