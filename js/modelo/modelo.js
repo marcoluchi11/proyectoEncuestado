@@ -64,6 +64,10 @@ Modelo.prototype = {
   editarPregunta: function(id){
     var index = this.preguntas.findIndex(i => i.id === id);
     this.preguntas[index].textoPregunta = prompt('Edite la respuesta');
+    if(this.preguntas[index].textoPregunta === null || this.preguntas[index].textoPregunta === NaN || this.preguntas[index].textoPregunta === ''){ 
+      alert('Escriba la pregunta correctamente por favor');
+      return;
+    }
     this.guardar();
     this.preguntaEditada.notificar();
   },
